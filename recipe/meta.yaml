@@ -1,5 +1,5 @@
 {% set name = "markdown-it-py" %}
-{% set version = "2.1.0" %}
+{% set version = "2.2.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,13 +7,13 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: cf7e59fed14b5ae17c0006eff14a2d9a00ed5f3a846148153899a0224e2c07da
+  sha256: 7c9a5e412688bc771c67432cbfebcdd686c93ce6484913dccf06cb5a0bea35a1
 
 build:
   number: 0
   entry_points:
     - markdown-it = markdown_it.cli.parse:main
-  script: '{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv '
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
   skip: True  # [py<37]
 
 requirements:
@@ -47,7 +47,8 @@ about:
   license: MIT
   license_family: MIT
   license_file: LICENSE
-  summary: Python port of markdown-it. Markdown parsing, done right!
+  description: |
+    Python port of markdown-it. Markdown parsing, done right!
   doc_url: https://github.com/ExecutableBookProject/markdown-it-py/blob/master/README.md
   dev_url: https://github.com/ExecutableBookProject/markdown-it-py
 
