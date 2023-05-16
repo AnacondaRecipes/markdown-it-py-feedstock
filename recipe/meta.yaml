@@ -21,6 +21,8 @@ requirements:
     - python
     - pip
     - flit-core >=3.4,<4
+    - setuptools
+    - wheel
   run:
     - python
     - mdurl >=0.1,<1
