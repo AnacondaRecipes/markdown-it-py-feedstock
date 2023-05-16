@@ -10,7 +10,7 @@ source:
   sha256: 7c9a5e412688bc771c67432cbfebcdd686c93ce6484913dccf06cb5a0bea35a1
 
 build:
-  number: 0
+  number: 1
   entry_points:
     - markdown-it = markdown_it.cli.parse:main
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
@@ -21,6 +21,8 @@ requirements:
     - python
     - pip
     - flit-core >=3.4,<4
+    - setuptools
+    - wheel
   run:
     - python
     - mdurl >=0.1,<1
