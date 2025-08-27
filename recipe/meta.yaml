@@ -67,6 +67,9 @@ test:
   commands:
     - pip check
     - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
+    # UnicodeDecodeError: 'charmap' codec can't decode byte
+    - set PYTHONUTF8=1              # [win]
+    - set PYTHONIOENCODING="UTF-8"  # [win]
     - pytest -k "not({{ tests_to_skip }})" -v gh/tests
     - markdown-it --help
 
