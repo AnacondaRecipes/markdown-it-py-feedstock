@@ -13,7 +13,7 @@ source:
     folder: gh
 
 build:
-  number: 0
+  number: 1
   entry_points:
     - markdown-it = markdown_it.cli.parse:main
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
@@ -23,13 +23,19 @@ requirements:
   host:
     - python
     - pip
-    - flit-core >=3.4,<4
+    # AttributeError: module 'ast' has no attribute 'Str' when using flit-core <3.12 on python 3.14.
+    # To fix this, the flit-core code needs to be updated to use ast.Constant instead. 
+    # flit-core 3.12 is available on the main channel for python 3.14.
+    - flit-core >=3.4,<4   # [py<314]
+    - flit-core >=3.12,<4  # [py>=314]
   run:
     - python
     - mdurl >=0.1,<0.2
   run_constrained:
     - commonmark >=0.9,<0.10
-    - markdown >=3.4,<3.5
+    # Relax the upper bound to allow for the latest version of markdown
+    # with py314 support on the main channel.
+    - markdown >=3.4,<3.9
     - mistletoe >=1.0,<2.0
     - mistune >=3.0,<4.0
     - panflute >=2.3,<2.4
