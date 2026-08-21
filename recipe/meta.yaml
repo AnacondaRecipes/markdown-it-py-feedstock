@@ -1,19 +1,19 @@
 {% set name = "markdown-it-py" %}
-{% set version = "4.0.0" %}
+{% set version = "4.2.0" %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name }}
   version: {{ version }}
 
 source:
   - url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/markdown_it_py-{{ version }}.tar.gz
-    sha256: cb0a2b4aa34f932c007117b194e945bd74e0ec24133ceb5bac59009cda1cb9f3
+    sha256: 04a21681d6fbb623de53f6f364d352309d4094dd4194040a10fd51833e418d49
   - url: https://github.com/executablebooks/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
-    sha256: c562899de418498f223f0c48b3d462319a64493bd3b2758e1a76f11ad8f0ae15
+    sha256: cf51d7a4b162bcf185e423a287031d24cca0bffe6c1980e7b578faf8de34df18
     folder: gh
 
 build:
-  number: 2
+  number: 0
   entry_points:
     - markdown-it = markdown_it.cli.parse:main
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
@@ -21,8 +21,8 @@ build:
 
 requirements:
   host:
-    - python
     - pip
+    - python
     # AttributeError: module 'ast' has no attribute 'Str' when using flit-core <3.12 on python 3.14.
     # To fix this, the flit-core code needs to be updated to use ast.Constant instead. 
     # flit-core 3.12 is available on the main channel for python 3.14.
